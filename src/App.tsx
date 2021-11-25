@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import {ProductCard,ProductImage,ProductTitle, ProductButtons} from 'jepm-product-card'
+
+const product={
+  id:'1',
+  title:'Coffee Mug - Card',
+  img:'./coffee-mug.png'
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App App-header">
+        <ProductCard 
+            product={ product} 
+            initialValues={{
+                count:4,
+                maxCount:10,
+            }}
         >
-          Learn React
-        </a>
-      </header>
+            {
+                ({count,maxCount,reset,increaseBy, isMaxCountReached})=>(
+                    <>
+                        <ProductImage />
+                        <ProductTitle />
+                        <ProductButtons />
+                        {count}
+                        <button onClick={reset}>Reset</button>
+                    </>
+                )
+            }
+        </ProductCard>
     </div>
   );
 }
